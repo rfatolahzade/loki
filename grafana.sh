@@ -1,7 +1,7 @@
 {
 helm repo add grafana https://grafana.github.io/helm-charts
 kubectl create ns loki
-helm upgrade --install loki grafana/loki-stack  --set grafana.enabled=true,prometheus.enabled=true,prometheus.alertmanager.persistentVolume.enabled=false,prometheus.server.persistentVolume.enabled=false  --set-file extraScrapeConfigs=promtail-local-config.yaml -n loki
+helm upgrade --install loki grafana/loki-stack  --set grafana.enabled=true,prometheus.enabled=true,prometheus.alertmanager.persistentVolume.enabled=false,prometheus.server.persistentVolume.enabled=false  --set-file extraScrapeConfigs=promtail-local-config.yaml --set-file extraScrapeConfigs=test-etcd.yaml -n loki
 }
 
 kubectl create -f sc-local-storage.yaml -f loki-pv.yaml -f loki-pvc.yaml
